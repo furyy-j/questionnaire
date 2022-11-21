@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManagementPageComponent } from './management-page/management-page.component';
 import { QuestionComponent } from './management-page/question-card/question.component';
 import { CreateCardComponent } from './management-page/create-card/create-card.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CreateCardComponent } from './management-page/create-card/create-card.c
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
