@@ -8,20 +8,30 @@ import { ManagementPageComponent } from './management-page/management-page.compo
 import { QuestionComponent } from './management-page/question-card/question.component';
 import { CreateCardComponent } from './management-page/create-card/create-card.component';
 import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import { CreatePageComponent } from './create-page/create-page.component';
+import { HeaderComponent } from './common/components/header/header.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
     AppComponent,
     ManagementPageComponent,
     QuestionComponent,
-    CreateCardComponent
+    CreateCardComponent,
+    CreatePageComponent,
+    HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

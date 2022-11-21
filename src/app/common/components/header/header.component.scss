@@ -1,0 +1,8 @@
+mat-toolbar{
+  display: flex;
+  justify-content: space-between;
+  &_links{
+    display: flex;
+    justify-content: space-between;
+  }
+}

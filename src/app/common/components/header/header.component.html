@@ -1,1 +1,15 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+	<h2 class="header-title">{{ title }}</h2>
+
+	<div class="links">
+		<a
+		   [routerLink]="'/list'">
+			<mat-icon>list</mat-icon>
+		</a>
+		<a
+		   [routerLink]="'/create-page'">
+			<mat-icon>add_box</mat-icon>
+		</a>
+	</div>
+
+</mat-toolbar>
