@@ -13,6 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { CreatePageComponent } from './create-page/create-page.component';
 import { HeaderComponent } from './common/components/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { ListPageComponent } from './list-page/list-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     QuestionComponent,
     CreateCardComponent,
     CreatePageComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListPageComponent
   ],
     imports: [
         BrowserModule,

@@ -1,8 +1,27 @@
-mat-toolbar{
+.header{
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  &_links{
+
+  h2{
+    color: white;
+  }
+  &-links{
+
     display: flex;
     justify-content: space-between;
+
   }
+  &-link{
+    text-decoration: none;
+    color: white;
+    padding-left: 20px;
+  }
+  &-link::marker{
+    font-size: 0;
+  }
+}
+.active{
+  color: grey;
 }

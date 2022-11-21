@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {navbarData} from "../../enums/nav.enum";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  title: string = 'Question Management Page'
+  navData = navbarData;
+  constructor() {}
 
   ngOnInit(): void {
   }

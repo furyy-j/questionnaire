@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ManagementPageComponent} from "./management-page/management-page.component";
 import {CreatePageComponent} from "./create-page/create-page.component";
+import {ListPageComponent} from "./list-page/list-page.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'create-page', component: CreatePageComponent
+  },
+  {
+    path: 'list', component: ListPageComponent
   },
   ]
 

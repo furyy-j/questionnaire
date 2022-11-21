@@ -1,15 +1,14 @@
-<mat-toolbar color="primary">
-	<h2 class="header-title">{{ title }}</h2>
+<mat-toolbar class="header" color="primary">
+	<h2 class="header-title">Questionnaire</h2>
+	<ul class="header-links">
+		<li class="header-link" *ngFor="let data of navData"
+			>
+			<button [routerLink]="data.routeLink"
 
-	<div class="links">
-		<a
-		   [routerLink]="'/list'">
-			<mat-icon>list</mat-icon>
-		</a>
-		<a
-		   [routerLink]="'/create-page'">
-			<mat-icon>add_box</mat-icon>
-		</a>
-	</div>
-
+					routerLinkActive="active"
+					mat-icon-button>
+				<mat-icon>{{data.icon}}</mat-icon>
+			</button>
+		</li>
+	</ul>
 </mat-toolbar>
