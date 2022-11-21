@@ -16,6 +16,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { ListPageComponent } from './list-page/list-page.component';
 import { CreateQuestionsComponent } from './create-page/create-questions/create-questions.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatButtonModule,
         MatIconModule,
         MatToolbarModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatStepperModule
     ],
   providers: [],
   bootstrap: [AppComponent]

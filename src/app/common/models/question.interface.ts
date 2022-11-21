@@ -1,12 +1,11 @@
-export enum Type {
-    Single = 'Single',
-    Multiple = 'Multiple',
-    Text = 'Text'
-}
+import {Type} from "../enums/types.enum";
 
 export interface Question{
     title: string,
     id: string,
-    date: string,
-    type: Type
+    creationDate: string,
+    type: Type,
+    answeredDate?: Date,
+    answers?: string[],
+    answer?: string[],
 }
