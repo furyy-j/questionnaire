@@ -14,6 +14,8 @@ import { CreatePageComponent } from './create-page/create-page.component';
 import { HeaderComponent } from './common/components/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { ListPageComponent } from './list-page/list-page.component';
+import { CreateQuestionsComponent } from './create-page/create-questions/create-questions.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ListPageComponent } from './list-page/list-page.component';
     CreateCardComponent,
     CreatePageComponent,
     HeaderComponent,
-    ListPageComponent
+    ListPageComponent,
+    CreateQuestionsComponent
   ],
     imports: [
         BrowserModule,
@@ -32,7 +35,8 @@ import { ListPageComponent } from './list-page/list-page.component';
         MatCardModule,
         MatButtonModule,
         MatIconModule,
-        MatToolbarModule
+        MatToolbarModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
