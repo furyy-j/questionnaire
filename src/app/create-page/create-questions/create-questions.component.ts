@@ -3,6 +3,9 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {Type} from "../../common/enums/types.enum";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {LocalService} from "../../common/services /localService.service";
+import {Question} from "../../common/models/question.interface";
+import {GenerateIDService} from "../../common/services /generate-id.service";
 
 
 @Component({
@@ -10,9 +13,11 @@ import {Router} from "@angular/router";
   templateUrl: './create-questions.component.html',
   styleUrls: ['./create-questions.component.scss']
 })
-export class CreateQuestionsComponent implements OnInit, OnDestroy {
+export class CreateQuestionsComponent implements OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
+              private localStore: LocalService,
+              private randID: GenerateIDService,
               private router: Router) {
 
     this.sub = this.form.controls.type.valueChanges.subscribe(() => {
@@ -24,18 +29,17 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
 
   questionType = Type;
   types = Object.keys(Type);
+  questions: Question[] = this.localStore.getItem("questions") || [];
 
   form = this.formBuilder.group({
     title: new FormControl(null, [Validators.required]),
     type: new FormControl(null, [Validators.required]),
-    answers: new FormArray([])
+    answers: new FormArray([],
+        (amount)=>{
+      return amount.value.length > 1 ? null : { error: true };})
   })
 
   answers: FormArray | any = this.form.controls.answers;
-
-  ngOnInit(): void {
-    console.log(this.answers)
-  }
 
   get hasAnswers(): boolean | null{
     const value = this.form.controls.type.value;
@@ -43,7 +47,14 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
     return value !== this.questionType.Open;
   }
   createQuestion(){
-    console.log(this.form.value)
+    this.localStore.setItem('questions',[...this.questions,
+      {
+        ...this.form.value,
+        id: this.randID.generateID(),
+        creationDate: new Date(),
+        answer: []
+      }
+    ])
     this.router.navigate(['/management']);
   }
 

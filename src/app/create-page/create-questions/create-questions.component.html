@@ -16,6 +16,9 @@
 	<!--	?answers?-->
 	<!--	create button-->
 	<div class="answers" *ngIf="hasAnswers">
+		<div class="mat-error" *ngIf="form.controls.answers.length==1">
+			Answers should be more than 1
+		</div>
 		<button mat-stroked-button color="primary"
 				(click)="addAnswer()"
 				class="button">Add an answer option
