@@ -1,3 +1,31 @@
-<form >
+<form [formGroup]="form" class="form-question">
 
+	<mat-form-field class="example-full-width">
+		<mat-label>Title</mat-label>
+		<input type="text" matInput formControlName="title">
+	</mat-form-field>
+
+	<mat-radio-group class="radio" aria-label="Select an option"
+					 formControlName="type"
+					 >
+		<mat-radio-button *ngFor="let type of types"
+						  [value]="type"
+						  >{{type}}</mat-radio-button>
+	</mat-radio-group>
+	<!--	radio-->
+	<!--	?answers?-->
+	<!--	create button-->
+	<div class="answers" *ngIf="hasAnswers">
+		<button mat-raised-button
+				class="button">123</button>
+	</div>
+	<button
+			mat-raised-button
+			class="button"
+			[disabled]="form.invalid"
+			(click)="createQuestion()"
+			color="primary"
+	>
+		Create
+	</button>
 </form>
