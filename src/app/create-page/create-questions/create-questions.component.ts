@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Type} from "../../common/enums/types.enum";
 import {Subscription} from "rxjs";
@@ -9,61 +9,84 @@ import {GenerateIDService} from "../../common/services /generate-id.service";
 
 
 @Component({
-  selector: 'app-create-questions',
-  templateUrl: './create-questions.component.html',
-  styleUrls: ['./create-questions.component.scss']
+    selector: 'app-create-questions',
+    templateUrl: './create-questions.component.html',
+    styleUrls: ['./create-questions.component.scss']
 })
-export class CreateQuestionsComponent implements OnDestroy {
+export class CreateQuestionsComponent implements OnInit, OnDestroy {
 
-  constructor(private formBuilder: FormBuilder,
-              private localStore: LocalService,
-              private randID: GenerateIDService,
-              private router: Router) {
+    @Input() editing = false;
+    @Input() question;
 
-    this.sub = this.form.controls.type.valueChanges.subscribe(() => {
-      !this.hasAnswers ? this.answers.setErrors(null) : this.answers.updateValueAndValidity();
-    });
-  }
+    constructor(private formBuilder: FormBuilder,
+                private localStore: LocalService,
+                private randID: GenerateIDService,
+                private router: Router) {
+        this.sub = this.form.controls.type.valueChanges.subscribe(() => {
+            !this.hasAnswers ? this.answers.setErrors(null) : this.answers.updateValueAndValidity();
+        });
+    }
 
-  sub!: Subscription;
+    sub!: Subscription;
 
-  questionType = Type;
-  types = Object.keys(Type);
-  questions: Question[] = this.localStore.getItem("questions") || [];
+    questionType = Type;
+    types = Object.keys(Type);
+    questions: Question[] = this.localStore.getItem("questions") || [];
 
-  form = this.formBuilder.group({
-    title: new FormControl(null, [Validators.required]),
-    type: new FormControl(null, [Validators.required]),
-    answers: new FormArray([],
-        (amount)=>{
-      return amount.value.length > 1 ? null : { error: true };})
-  })
+    form = this.formBuilder.group({
+        title: new FormControl(null, [Validators.required]),
+        type: new FormControl(null, [Validators.required]),
+        answers: new FormArray([],
+            (amount) => {
+                return amount.value.length > 1 ? null : {error: true};
+            })
+    })
 
-  answers: FormArray | any = this.form.controls.answers;
+    answers: FormArray | any = this.form.controls.answers;
 
-  get hasAnswers(): boolean | null{
-    const value = this.form.controls.type.value;
-    if(!value){return null}
-    return value !== this.questionType.Open;
-  }
-  createQuestion(){
-    this.localStore.setItem('questions',[...this.questions,
-      {
-        ...this.form.value,
-        id: this.randID.generateID(),
-        creationDate: new Date(),
-        answer: []
-      }
-    ])
-    this.router.navigate(['/management']);
-  }
 
-  addAnswer(answer?: string):void{
-     this.answers.push(new FormControl(answer || '', Validators.required))
-  }
-  ngOnDestroy() {
-    if(this.sub){this.sub.unsubscribe()}
-  }
+    ngOnInit(): void {
+        if (this.editing) {
+            this.form.patchValue(this.question);
+            this.question.answers?.forEach(answer => this.addAnswer(answer))
+        }
+    }
+
+    get hasAnswers(): boolean | null {
+        const value = this.form.controls.type.value;
+        if (!value) {
+            return null
+        }
+        return value !== this.questionType.Open;
+    }
+
+    createQuestion() {
+        this.localStore.setItem('questions', [...this.questions,
+            {
+                ...this.form.value,
+                id: this.randID.generateID(),
+                creationDate: new Date(),
+                answer: []
+            }
+        ])
+        this.router.navigate(['/management']);
+    }
+    updateQuestion(){
+        const index = this.questions.findIndex(question => question.id === this.question.id);
+        this.questions[index] = { ...this.question, ...this.form.getRawValue() }
+        this.localStore.setItem('questions', this.questions);
+        this.router.navigate(['/management']);
+    }
+
+    addAnswer(answer?: string): void {
+        this.answers.push(new FormControl(answer || '', Validators.required))
+    }
+
+    ngOnDestroy() {
+        if (this.sub) {
+            this.sub.unsubscribe()
+        }
+    }
 
 
 }

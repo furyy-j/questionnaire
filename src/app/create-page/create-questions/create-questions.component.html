@@ -12,9 +12,6 @@
 						  [value]="type"
 		>{{type}}</mat-radio-button>
 	</mat-radio-group>
-	<!--	radio-->
-	<!--	?answers?-->
-	<!--	create button-->
 	<div class="answers" *ngIf="hasAnswers">
 		<div class="mat-error" *ngIf="form.controls.answers.length==1">
 			Answers should be more than 1
@@ -26,7 +23,7 @@
 		<div *ngIf="form.controls.type.value=='Single'">
 			<ng-container formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
 				<mat-form-field class="answer-input">
-					<mat-label>Answer {{i+1}}</mat-label>
+					<mat-label>Answer {{i + 1}}</mat-label>
 					<input matInput [formControl]="answer" placeholder="Enter answer option">
 				</mat-form-field>
 			</ng-container>
@@ -34,13 +31,23 @@
 		<div *ngIf="form.controls.type.value=='Multiple'">
 			<ng-container formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
 				<mat-form-field class="answer-input">
-					<mat-label>Answer {{i+1}}</mat-label>
+					<mat-label>Answer {{i + 1}}</mat-label>
 					<input matInput [formControl]="answer" placeholder="Enter answer option">
 				</mat-form-field>
 			</ng-container>
 		</div>
 	</div>
+	<button *ngIf="question"
+			mat-raised-button
+			class="button"
+			[disabled]="form.invalid"
+			(click)="updateQuestion()"
+			color="primary"
+	>
+		UPDATE
+	</button>
 	<button
+			*ngIf="!question"
 			mat-raised-button
 			class="button"
 			[disabled]="form.invalid"

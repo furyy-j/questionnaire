@@ -1,6 +1,7 @@
 <div *ngFor="let question of questions;let i = index" class="questions-wrapper">
 	<mat-card class="questions-card">
-		<mat-card-title>{{question.title}}</mat-card-title>
+		<mat-card-title *ngIf="question.title.length >41">{{question.title | slice:0:41}}...</mat-card-title>
+		<mat-card-title *ngIf="question.title.length <=41">{{question.title}}</mat-card-title>
 		<mat-card-subtitle>{{question.type}} question</mat-card-subtitle>
 		<mat-card-content>Date of creation: {{question.creationDate | date:'medium'}}</mat-card-content>
 		<mat-card-actions align="end" >
