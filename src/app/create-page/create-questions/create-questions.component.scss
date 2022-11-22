@@ -8,6 +8,15 @@
     display: flex;
     justify-content: space-between;
   }
+  .answers{
+    padding-bottom: 20px;
+    .button{
+      width: 100%;
+    }
+  }
+  .answer-input{
+    margin: 20px 0 -20px 0;
+  }
 }
 
 

@@ -7,17 +7,35 @@
 
 	<mat-radio-group class="radio" aria-label="Select an option"
 					 formControlName="type"
-					 >
+	>
 		<mat-radio-button *ngFor="let type of types"
 						  [value]="type"
-						  >{{type}}</mat-radio-button>
+		>{{type}}</mat-radio-button>
 	</mat-radio-group>
 	<!--	radio-->
 	<!--	?answers?-->
 	<!--	create button-->
 	<div class="answers" *ngIf="hasAnswers">
-		<button mat-raised-button
-				class="button">123</button>
+		<button mat-stroked-button color="primary"
+				(click)="addAnswer()"
+				class="button">Add an answer option
+		</button>
+		<div *ngIf="form.controls.type.value=='Single'">
+			<ng-container formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
+				<mat-form-field class="answer-input">
+					<mat-label>Answer {{i+1}}</mat-label>
+					<input matInput [formControl]="answer" placeholder="Enter answer option">
+				</mat-form-field>
+			</ng-container>
+		</div>
+		<div *ngIf="form.controls.type.value=='Multiple'">
+			<ng-container formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
+				<mat-form-field class="answer-input">
+					<mat-label>Answer {{i+1}}</mat-label>
+					<input matInput [formControl]="answer" placeholder="Enter answer option">
+				</mat-form-field>
+			</ng-container>
+		</div>
 	</div>
 	<button
 			mat-raised-button
@@ -26,6 +44,6 @@
 			(click)="createQuestion()"
 			color="primary"
 	>
-		Create
+		CREATE
 	</button>
 </form>

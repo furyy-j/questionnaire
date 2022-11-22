@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Question} from "../../common/models/question.interface";
 import {Type} from "../../common/enums/types.enum";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,10 +12,11 @@ import {Subscription} from "rxjs";
 })
 export class CreateQuestionsComponent implements OnInit, OnDestroy {
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router) {
 
     this.sub = this.form.controls.type.valueChanges.subscribe(() => {
-      !this.hasAnswers ? this.form.controls.answers.setErrors(null) : this.form.controls.answers.updateValueAndValidity();
+      !this.hasAnswers ? this.answers.setErrors(null) : this.answers.updateValueAndValidity();
     });
   }
 
@@ -30,19 +31,25 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
     answers: new FormArray([])
   })
 
-  ngOnInit(): void {
+  answers: FormArray | any = this.form.controls.answers;
 
+  ngOnInit(): void {
+    console.log(this.answers)
   }
+
   get hasAnswers(): boolean | null{
     const value = this.form.controls.type.value;
-    console.log(value !== this.questionType.Open)
-    console.log(value && value !== this.questionType.Open)
-
-    return value && value !== this.questionType.Open;
+    if(!value){return null}
+    return value !== this.questionType.Open;
   }
-  createQuestion(){}
+  createQuestion(){
+    console.log(this.form.value)
+    this.router.navigate(['/management']);
+  }
 
-
+  addAnswer(answer?: string):void{
+     this.answers.push(new FormControl(answer || '', Validators.required))
+  }
   ngOnDestroy() {
     if(this.sub){this.sub.unsubscribe()}
   }
