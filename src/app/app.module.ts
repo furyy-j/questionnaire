@@ -20,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatStepperModule} from "@angular/material/stepper";
 import {CommonModule} from "@angular/common";
+import { EditPageComponent } from './edit-page/edit-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {CommonModule} from "@angular/common";
     CreatePageComponent,
     HeaderComponent,
     ListPageComponent,
-    CreateQuestionsComponent
+    CreateQuestionsComponent,
+    EditPageComponent
   ],
     imports: [
         CommonModule,

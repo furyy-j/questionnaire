@@ -17,9 +17,6 @@ export class QuestionComponent implements OnInit {
     this.questions.sort((a,b)=> new Date(b.creationDate)
         .getTime() - new Date(a.creationDate).getTime())
   }
-  edit(id:any){
-    console.log(id)
-  }
   delete(i:number):void{
     this.questions.splice(i, 1);
     this.localStore.setItem('questions', this.questions);
