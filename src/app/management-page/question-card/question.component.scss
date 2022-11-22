@@ -1,0 +1,30 @@
+.questions{
+
+  &-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  &-card{
+    margin-bottom: 20px;
+    max-width: 400px;
+  }
+
+}
+.button{
+  min-width: 100px;
+
+}
+.edit:hover{
+  background: #2A8D9C;
+  color: white;
+}
+.delete:hover{
+  background: #B00000;
+  color: white;
+}
+
+

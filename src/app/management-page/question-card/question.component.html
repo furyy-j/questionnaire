@@ -1,5 +1,12 @@
-<!--<mat-card>-->
-<!--	<a class="example-button-container">-->
-<!--		Example question card-->
-<!--	</a>-->
-<!--</mat-card>-->
+<div *ngFor="let question of questions;let i = index" class="questions-wrapper">
+	<mat-card class="questions-card">
+		<mat-card-title>{{question.title}}</mat-card-title>
+		<mat-card-subtitle>{{question.type}} question</mat-card-subtitle>
+		<mat-card-content>Date of creation: {{question.creationDate | date:'medium'}}</mat-card-content>
+		<mat-card-actions align="end" >
+			<button class="button edit" mat-raised-button (click)="edit(question.id)">EDIT</button>
+			<button class="button delete" mat-raised-button (click)="delete(i)">DELETE</button>
+		</mat-card-actions>
+	</mat-card>
+</div>
+
