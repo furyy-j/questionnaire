@@ -1,6 +1,31 @@
 .page-wrapper{
   padding: 30px 100px;
-  .sides{
+}
+.list {
 
+  &-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .unanswered {
+      width: calc(50vw - 40px);
+      margin: 0 20px;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .answered {
+      width: calc(50vw - 40px);
+      margin: 0 20px;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 25px;
+    }
   }
 }
+
+

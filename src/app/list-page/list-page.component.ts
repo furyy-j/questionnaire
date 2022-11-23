@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Question} from "../common/models/question.interface";
+import {LocalService} from "../common/services /localService.service";
 
 @Component({
   selector: 'app-list-page',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPageComponent implements OnInit {
 
-  constructor() { }
+  questions: Question[] = this.localState.getItem('questions')
+  constructor(private localState: LocalService) { }
 
   ngOnInit(): void {
+  }
+
+  update(e:any){
+    console.log()
   }
 
 }

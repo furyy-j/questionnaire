@@ -22,6 +22,7 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {CommonModule} from "@angular/common";
 import { EditPageComponent } from './edit-page/edit-page.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import { ListElementsComponent } from './list-page/list-elements/list-elements.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     HeaderComponent,
     ListPageComponent,
     CreateQuestionsComponent,
-    EditPageComponent
+    EditPageComponent,
+    ListElementsComponent
   ],
     imports: [
         CommonModule,
