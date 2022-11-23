@@ -21,6 +21,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatStepperModule} from "@angular/material/stepper";
 import {CommonModule} from "@angular/common";
 import { EditPageComponent } from './edit-page/edit-page.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EditPageComponent } from './edit-page/edit-page.component';
         MatFormFieldModule,
         MatInputModule,
         MatRadioModule,
-        MatStepperModule
+        MatStepperModule,
+        MatGridListModule
     ],
   providers: [],
   bootstrap: [AppComponent]
