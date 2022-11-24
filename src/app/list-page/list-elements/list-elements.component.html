@@ -1,8 +1,7 @@
 <div class="question">
 	<h3>{{ question.title }}</h3>
-	<form class="answer-form">
-		<div class="answer-form-option"
-			 [ngSwitch]="question.type">
+	<form>
+		<div [ngSwitch]="question.type">
 			<ng-container *ngSwitchCase="'Single'">
 				<mat-radio-group
 						class="radios"
@@ -39,17 +38,18 @@
 				</textarea>
 			</ng-container>
 		</div>
-		<div class="actions">
+		<div class="date" *ngIf="answered">Answered: {{question.answeredDate |date:"medium"}}</div>
+		<div class="button">
 			<ng-container *ngIf="!answered">
-					<button mat-raised-button color="primary"
-							[disabled]="!question.answer.length"
-							(click)="addAnswer()">
-						Create Answer
-					</button>
+				<button mat-raised-button color="accent"
+						[disabled]="!question.answer.length"
+						(click)="addAnswer()">
+					Create an answer
+				</button>
 			</ng-container>
 			<ng-container *ngIf="answered">
 				<button mat-raised-button color="warn" (click)="removeAnswer()">
-					Roll Back Answer
+					Roll back the answer
 				</button>
 			</ng-container>
 		</div>

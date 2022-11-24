@@ -1,24 +1,23 @@
 <div class="page-wrapper">
 	<h1>Lists of Questions Page</h1>
-	<hr><br>
+	<hr>
+	<br>
 	<div class="list-content">
 		<div class="unanswered">
 			<h2>Unanswered Questions</h2>
-
 			<ng-container *ngFor="let item of questions">
 				<ng-container *ngIf="!item.answer.length">
 					<app-list-elements [question]="item" (update)="update($event)"></app-list-elements>
 				</ng-container>
 			</ng-container>
 		</div>
-
-
 		<div class="answered">
 			<h2>Answered Questions</h2>
 
 			<ng-container *ngFor="let item of questions">
 				<ng-container *ngIf="item.answer.length">
-					<app-list-elements [question]="item" [answered]="true" (update)="update($event)"></app-list-elements>
+					<app-list-elements [question]="item" [answered]="true"
+									   (update)="update($event)"></app-list-elements>
 				</ng-container>
 			</ng-container>
 		</div>

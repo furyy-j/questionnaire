@@ -16,7 +16,6 @@
     width: 97%;
     height: 70px;
   }
-
   .radios {
     display: flex;
     flex-direction: column;
@@ -24,7 +23,6 @@
     margin-bottom: 20px;
     gap: 10px;
   }
-
   .checkboxes {
     display: flex;
     flex-direction: column;
@@ -33,10 +31,15 @@
     margin-bottom: 10px;
     gap: 10px;
   }
-  .actions{
+  .button{
     position: absolute;
     bottom: 10px;
     right: 10px;
+  }
+  .date{
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
   }
 
 }

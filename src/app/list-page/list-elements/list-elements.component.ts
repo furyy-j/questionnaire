@@ -7,10 +7,9 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
     templateUrl: './list-elements.component.html',
     styleUrls: ['./list-elements.component.scss']
 })
-export class ListElementsComponent implements OnInit {
+export class ListElementsComponent {
 
     @Output() update = new EventEmitter<Question>();
-
     @Input() answered = false;
 
     @Input() set question(question: Question) {
@@ -18,9 +17,6 @@ export class ListElementsComponent implements OnInit {
     }
 
     private _changes!: Question;
-
-    ngOnInit(): void {
-    }
 
     get question(): Question {
         return this._changes;
@@ -48,6 +44,4 @@ export class ListElementsComponent implements OnInit {
     addAnswer(): void {
         this.update.emit(this.question)
     }
-
-
 }
