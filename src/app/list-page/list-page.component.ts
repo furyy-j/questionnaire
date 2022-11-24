@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
+import {Title} from "@angular/platform-browser";
+
 import {Question} from "../common/models/question.interface";
 import {LocalService} from "../common/services /localService.service";
+
 
 @Component({
     selector: 'app-list-page',
@@ -11,7 +14,9 @@ export class ListPageComponent {
 
     questions: Question[] = this.localState.getItem('questions')
 
-    constructor(private localState: LocalService) {
+    constructor(private localState: LocalService,
+                private title: Title) {
+        title.setTitle("List");
     }
 
     update(question1: Question): void {

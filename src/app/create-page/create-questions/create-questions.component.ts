@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Type} from "../../common/enums/types.enum";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
@@ -44,7 +44,6 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
 
     answers: FormArray | any = this.form.controls.answers;
 
-
     ngOnInit(): void {
         if (this.editing) {
             this.form.patchValue(this.question);
@@ -71,9 +70,10 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
         ])
         this.router.navigate(['/management']);
     }
-    updateQuestion(){
+
+    updateQuestion() {
         const index = this.questions.findIndex(question => question.id === this.question.id);
-        this.questions[index] = { ...this.question, ...this.form.getRawValue() }
+        this.questions[index] = {...this.question, ...this.form.getRawValue()}
         this.localStore.setItem('questions', this.questions);
         this.router.navigate(['/management']);
     }
@@ -87,6 +87,4 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
             this.sub.unsubscribe()
         }
     }
-
-
 }

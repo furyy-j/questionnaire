@@ -1,10 +1,8 @@
 <mat-toolbar class="header" color="primary">
-	<h2 class="header-title">Questionnaire</h2>
+	<h2 class="header-title"><a class="link" [routerLink]="'/management'">Questionnaire</a></h2>
 	<ul class="header-links">
-		<li class="header-link" *ngFor="let data of navData"
-			>
+		<li class="header-link" *ngFor="let data of navData">
 			<button [routerLink]="data.routeLink"
-
 					routerLinkActive="active"
 					mat-icon-button>
 				<mat-icon>{{data.icon}}</mat-icon>

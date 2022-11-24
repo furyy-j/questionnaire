@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Question} from "../../common/models/question.interface";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatCheckboxChange} from "@angular/material/checkbox";
+
+import {Question} from "../../common/models/question.interface";
 
 @Component({
     selector: 'app-list-elements',

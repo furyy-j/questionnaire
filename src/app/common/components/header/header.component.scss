@@ -1,25 +1,31 @@
-.header{
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  h2{
+  h2 {
     color: white;
   }
-  &-links{
+
+  &-links {
     display: flex;
     justify-content: space-between;
   }
-  &-link{
+
+  &-link {
     text-decoration: none;
     color: grey;
     padding-left: 20px;
   }
-  &-link::marker{
+
+  &-link::marker {
     font-size: 0;
   }
 }
-.active{
-  //border: 1px solid white;
+.link{
+  text-decoration: none;
+  color: white;
+}
+.active {
   color: white;
 }
