@@ -6,7 +6,7 @@
 			<h2>Unanswered Questions</h2>
 
 			<ng-container *ngFor="let item of questions">
-				<ng-container *ngIf="!item.answer?.length">
+				<ng-container *ngIf="!item.answer.length">
 					<app-list-elements [question]="item" (update)="update($event)"></app-list-elements>
 				</ng-container>
 			</ng-container>
@@ -17,7 +17,7 @@
 			<h2>Answered Questions</h2>
 
 			<ng-container *ngFor="let item of questions">
-				<ng-container *ngIf="item.answer?.length">
+				<ng-container *ngIf="item.answer.length">
 					<app-list-elements [question]="item" [answered]="true" (update)="update($event)"></app-list-elements>
 				</ng-container>
 			</ng-container>

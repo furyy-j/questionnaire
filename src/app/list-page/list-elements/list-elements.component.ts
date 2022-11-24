@@ -1,44 +1,53 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {LocalService} from "../../common/services /localService.service";
 import {Question} from "../../common/models/question.interface";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
-  selector: 'app-list-elements',
-  templateUrl: './list-elements.component.html',
-  styleUrls: ['./list-elements.component.scss']
+    selector: 'app-list-elements',
+    templateUrl: './list-elements.component.html',
+    styleUrls: ['./list-elements.component.scss']
 })
 export class ListElementsComponent implements OnInit {
 
+    @Output() update = new EventEmitter<Question>();
 
+    @Input() answered = false;
 
-  @Input() answered = false;
-  @Output() update = new EventEmitter<Question>();
-  @Input() set question(question: Question) {
-    this._aptQuestion = { ...question, answeredDate: new Date(), answer: [...question.answer] }
-  }
+    @Input() set question(question: Question) {
+        this._changes = {...question, answeredDate: new Date(), answer: [...question.answer]}
+    }
 
-  _aptQuestion!: Question;
+    private _changes!: Question;
 
-  ngOnInit(): void {
-  }
-  get question(): Question {
-    return this._aptQuestion;
-  }
+    ngOnInit(): void {
+    }
 
-  onSelectSingle(answer: { value: string }): void {
-    this.question.answer[0] = answer.value;
-  }
-  onSelectMulti(event: MatCheckboxChange, answer: string): void {
-    event.checked ? this.question.answer.push(answer) : this.question.answer.filter(a => a === answer);
-  }
-  isSelected(answer: string): boolean {
-    return this.question.answer.includes(answer);
-  }
+    get question(): Question {
+        return this._changes;
+    }
 
-  addAnswer(){
-    this.update.emit(this.question)
-  }
+    onSelectSingle(answer: { value: string }): void {
+        this.question.answer[0] = answer.value;
+    }
+
+    onSelectMulti(event: MatCheckboxChange, answer: string): void {
+        event.checked ? this.question.answer.push(answer)
+            : this.question.answer.filter(a => a === answer);
+    }
+
+    isSelected(answer: string): boolean {
+        return this.question.answer.includes(answer);
+    }
+
+    removeAnswer(): void {
+        this.question.answer = [];
+        this.question.answeredDate = null;
+        this.update.emit(this.question);
+    }
+
+    addAnswer(): void {
+        this.update.emit(this.question)
+    }
 
 
 }

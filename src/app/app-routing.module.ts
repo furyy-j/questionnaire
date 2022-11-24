@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/management' },
   { path: 'management', component: ManagementPageComponent },
   { path: 'create-page', component: CreatePageComponent },
-  { path: 'list', component: ListPageComponent },
   { path: 'edit/:id', component: EditPageComponent },
+  { path: 'list', component:  ListPageComponent},
   ]
 
 @NgModule({

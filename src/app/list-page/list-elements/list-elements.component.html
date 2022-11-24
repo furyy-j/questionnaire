@@ -1,14 +1,13 @@
-
 <div class="question">
-	<h3> {{ question.title }} </h3>
-
-
+	<h3>{{ question.title }}</h3>
 	<form class="answer-form">
-		<div class="answer-form-option" [ngSwitch]="question.type">
+		<div class="answer-form-option"
+			 [ngSwitch]="question.type">
 			<ng-container *ngSwitchCase="'Single'">
-				<mat-radio-group class="radios"
-								 (change)="onSelectSingle($event)"
-								 [disabled]="answered">
+				<mat-radio-group
+						class="radios"
+						(change)="onSelectSingle($event)"
+						[disabled]="answered">
 					<mat-radio-button *ngFor="let answer of question.answers"
 									  [value]="answer"
 									  [checked]="answered && answer === question.answer[0]"
@@ -17,49 +16,39 @@
 					</mat-radio-button>
 				</mat-radio-group>
 			</ng-container>
-
-
 			<ng-container *ngSwitchCase="'Multiple'">
 				<div *ngFor="let answer of question.answers; let i = index">
 					<mat-checkbox class="checkboxes"
 								  (change)="onSelectMulti($event, answer)"
 								  [checked]="isSelected(answer)"
-								  [disabled]="answered" >
+								  [disabled]="answered">
 						{{ answer }}
 					</mat-checkbox>
 				</div>
 			</ng-container>
-
-
 			<ng-container *ngSwitchCase="'Open'">
 				<textarea matInput
 						  #textAreaElement
 						  [disabled]="answered"
 						  [value]="question.answer[0] || ''"
 						  (input)="onSelectSingle({ value: textAreaElement.value })"
-						  name="questionText" cols="35" rows="8"
 						  class="textarea"
 						  placeholder="Type your answer"
 						  maxlength="255"
 						  required>
 				</textarea>
-
 			</ng-container>
 		</div>
-
 		<div class="actions">
 			<ng-container *ngIf="!answered">
-				<div>
-					<button mat-raised-button color="accent"
-							(click)="addAnswer()"
-							[disabled]="!question.answer.length" >
+					<button mat-raised-button color="primary"
+							[disabled]="!question.answer.length"
+							(click)="addAnswer()">
 						Create Answer
 					</button>
-				</div>
 			</ng-container>
 			<ng-container *ngIf="answered">
-<!--				(click)="removeAnswer()"-->
-				<button mat-raised-button color="warn" >
+				<button mat-raised-button color="warn" (click)="removeAnswer()">
 					Roll Back Answer
 				</button>
 			</ng-container>
