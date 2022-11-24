@@ -15,8 +15,11 @@ export class ListPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  update(e:any){
-    console.log()
+  update(question:Question){
+    const index = this.questions.findIndex(question => question.id === question.id);
+    this.questions[index] = question;
+    // this.questions = this.questions.sort((a, b) => new Date(b.answeredDate).getTime() - new Date(a.answeredDate).getTime());
+    this.localState.setItem('questions', this.questions);
   }
 
 }

@@ -23,6 +23,7 @@ import {CommonModule} from "@angular/common";
 import { EditPageComponent } from './edit-page/edit-page.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { ListElementsComponent } from './list-page/list-elements/list-elements.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ListElementsComponent } from './list-page/list-elements/list-elements.c
         MatInputModule,
         MatRadioModule,
         MatStepperModule,
-        MatGridListModule
+        MatGridListModule,
+        MatCheckboxModule
     ],
   providers: [],
   bootstrap: [AppComponent]
