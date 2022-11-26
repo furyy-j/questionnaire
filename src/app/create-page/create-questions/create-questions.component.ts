@@ -43,10 +43,10 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
     })
 
     // get answers() {
-    //     return this.form.controls.answers as FormArray;
+    //     return this.form.controls.answers as FormArray ;
     // }
 
-    answers: FormArray | any = this.form.controls.answers;
+    answers: any | FormArray = this.form.controls.answers;
 
     ngOnInit(): void {
         if (this.editing) {
