@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Type} from "../../common/enums/types.enum";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
@@ -42,6 +42,10 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
             })
     })
 
+    // get answers() {
+    //     return this.form.controls.answers as FormArray;
+    // }
+
     answers: FormArray | any = this.form.controls.answers;
 
     ngOnInit(): void {
@@ -51,7 +55,7 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
         }
     }
 
-    get hasAnswers(): boolean | null {
+    get hasAnswers(): boolean {
         const value = this.form.controls.type.value;
         if (!value) {
             return null
@@ -79,7 +83,12 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
     }
 
     addAnswer(answer?: string): void {
-        this.answers.push(new FormControl(answer || '', Validators.required))
+        this.answers.push(new FormControl(answer || '', Validators.required));
+    }
+
+    removeAnswer(i:number){
+        const answers = this.form.get('answers') as FormArray;
+        answers.removeAt(i)
     }
 
     ngOnDestroy() {

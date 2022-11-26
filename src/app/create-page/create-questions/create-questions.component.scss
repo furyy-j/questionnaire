@@ -14,8 +14,17 @@
       width: 100%;
     }
   }
-  .answer-input{
-    margin: 20px 0 -20px 0;
+  .answer{
+    display: flex;
+    justify-content: space-between;
+    &-input {
+      margin: 20px 0 -20px 0;
+    }
+    &-button{
+      align-self:flex-end;
+      margin-right: 10px;
+    }
+
   }
 }
 
