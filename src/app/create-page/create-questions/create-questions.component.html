@@ -21,20 +21,23 @@
 		</button>
 		<div *ngIf="form.controls.type.value=='Single'">
 			<ng-container formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
-				<mat-form-field class="answer-input">
-					<mat-label>Answer {{i + 1}}</mat-label>
-					<input matInput [formControl]="answer" placeholder="Enter answer option">
-				</mat-form-field>
+				<div class="answer">
+					<mat-form-field class="answer-input">
+						<mat-label>Answer {{i + 1}}</mat-label>
+						<input matInput [formControl]="answer" placeholder="Enter answer option">
+					</mat-form-field>
+					<button mat-raised-button class="answer-button" (click)="removeAnswer(i)">X</button>
+				</div>
 			</ng-container>
 		</div>
 		<div *ngIf="form.controls.type.value=='Multiple'">
 			<ng-container formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
-
-				<div class="answer"><mat-form-field class="answer-input">
-					<mat-label>Answer {{i + 1}}</mat-label>
-					<input matInput [formControl]="answer" placeholder="Enter answer option">
-				</mat-form-field>
-				<button mat-raised-button class="answer-button" (click)="removeAnswer(i)">X</button>
+				<div class="answer">
+					<mat-form-field class="answer-input">
+						<mat-label>Answer {{i + 1}}</mat-label>
+						<input matInput [formControl]="answer" placeholder="Enter answer option">
+					</mat-form-field>
+					<button mat-raised-button class="answer-button" (click)="removeAnswer(i)">X</button>
 				</div>
 			</ng-container>
 		</div>

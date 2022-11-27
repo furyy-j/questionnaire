@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Type} from "../../common/enums/types.enum";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
@@ -42,23 +42,24 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
             })
     })
 
+
     // get answers() {
-    //     return this.form.controls.answers as FormArray ;
+    //     return this.form.controls["answers"] as FormArray;
     // }
 
-    answers: any | FormArray = this.form.controls.answers;
+    answers: FormArray | any = this.form.controls.answers; //this looks like a bug, it doesn't work with only FormArray although the types are correct..
 
     ngOnInit(): void {
         if (this.editing) {
             this.form.patchValue(this.question);
-            this.question.answers?.forEach(answer => this.addAnswer(answer))
+            this.question.answers?.forEach(answer => this.addAnswer(answer));
         }
     }
 
     get hasAnswers(): boolean {
         const value = this.form.controls.type.value;
         if (!value) {
-            return null
+            return null;
         }
         return value !== this.questionType.Open;
     }
@@ -77,7 +78,7 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
 
     updateQuestion() {
         const index = this.questions.findIndex(question => question.id === this.question.id);
-        this.questions[index] = {...this.question, ...this.form.getRawValue()}
+        this.questions[index] = {...this.question, ...this.form.getRawValue()};
         this.localStore.setItem('questions', this.questions);
         this.router.navigate(['/management']);
     }
@@ -88,12 +89,12 @@ export class CreateQuestionsComponent implements OnInit, OnDestroy {
 
     removeAnswer(i:number){
         const answers = this.form.get('answers') as FormArray;
-        answers.removeAt(i)
+        answers.removeAt(i);
     }
 
     ngOnDestroy() {
         if (this.sub) {
-            this.sub.unsubscribe()
+            this.sub.unsubscribe();
         }
     }
 }
