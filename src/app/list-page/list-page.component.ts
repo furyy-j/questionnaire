@@ -12,7 +12,7 @@ import {LocalService} from "../common/services /localService.service";
 })
 export class ListPageComponent {
 
-    questions: Question[] = this.localState.getItem('questions')
+    questions: Question[] = this.localState.getItem('questions');
 
     constructor(private localState: LocalService,
                 private title: Title) {

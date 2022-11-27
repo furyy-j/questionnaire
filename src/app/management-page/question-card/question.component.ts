@@ -10,14 +10,15 @@ import {Question} from "../../common/models/question.interface";
 })
 export class QuestionComponent implements OnInit {
 
-    questions: Question[] = this.localStore.getItem('questions')
+    questions: Question[] = this.localStore.getItem('questions');
+
     constructor(private localStore: LocalService) {
     }
 
     ngOnInit(): void {
         this.questions
             .sort((a, b) =>
-                new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
+                new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
     }
 
     delete(i: number): void {

@@ -14,7 +14,7 @@ export class ListElementsComponent {
     @Input() answered = false;
 
     @Input() set question(question: Question) {
-        this._changes = {...question, answeredDate: new Date(), answer: [...question.answer]}
+        this._changes = {...question, answeredDate: new Date(), answer: [...question.answer]};
     }
 
     private _changes!: Question;
@@ -43,6 +43,6 @@ export class ListElementsComponent {
     }
 
     addAnswer(): void {
-        this.update.emit(this.question)
+        this.update.emit(this.question);
     }
 }

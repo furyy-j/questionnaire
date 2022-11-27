@@ -8,6 +8,6 @@ import {Title} from "@angular/platform-browser";
 })
 export class ManagementPageComponent {
     constructor(private title: Title) {
-        title.setTitle("Management")
+        title.setTitle("Management");
     }
 }
